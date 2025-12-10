@@ -1,26 +1,55 @@
 from flask import *
-from utils.acesso_bd import*
+from dao.banco import *
+from dao.usuarioDAO import *
 
 #INSTANCIANDO O OBJETO DO SERVIDOR FLASK
-app= Flask(__name__)
-usuarios = [['diego','d@d','123'],['mariany','m@m','123'],['jose','j@j','123'],['rene','r@r','123']]
+app = Flask(__name__)
+app.secret_key = 'HGF431kSD&'
+
+init_db()
+
+@app.before_request
+def pegar_sessao():
+    g.session = Session()#ao criar a aplicaçao ele instancia um objeto de sessao para acesso controlado ao BD
+
+@app.teardown_appcontext
+def encerrar_sessao(exception=None):
+    Session.remove()
 
 @app.route('/')
 def abrir_home_page():
-    return render_template('index.html')
+    return render_template('paginainicial.html')
 
-@app.route('/fazerlogin', methods=['post'])
+@app.route('/menu', methods=['GET'])
+def acessar_menu():
+    return render_template('menu.html')
+
+
+@app.route('/fazerlogin', methods=['POST', 'GET'])
 def fazer_login():
+
+    if request.method == 'GET' and 'login' in session:
+        print("logado via link")
+        return render_template('pglogado.html')
+
+    if request.method == 'GET':
+        return  render_template('login.html')
 
     login = request.form.get('loginusuario')
     senha = request.form.get('senhausuario')
 
-    if verificar_login(usuarios, login, senha):
-        return render_template('logado.html')
+    udao = UsuarioDAO(g.session)
+
+    usuario = udao.autenticar(login, senha)
+    if usuario:
+        print(usuario)
+        session['login'] = login
+        print("logado via login")
+        return render_template('pglogado.html')
     else:
-        # aqui o usuario digitou o login ou senha errado
-        msg = 'usuario ou senha inválidos'
-        return render_template('index.html', texto=msg)
+        #aqui o usuario digitou o login ou senha errado
+        msg = 'Usuário ou senha inválidos'
+        return render_template('paginainicial.html', texto=msg)
 
 
 @app.route('/cadastrar', methods=['GET','POST'])
@@ -28,15 +57,15 @@ def cadastrar():
     if request.method == 'GET':
         return render_template('paginacadastro.html')
 
+    udao = UsuarioDAO(g.session)
     nome = request.form.get('nomeuser')
     email = request.form.get('email')
     senha = request.form.get('senha')
     confirma = request.form.get('confirmacao')
 
     if senha == confirma:
-        global usuarios
-        usuarios.append([nome, email, senha])
-        return render_template('index.html')
+        udao.criar(Usuario(email=email, nome=nome, senha=senha))
+        return render_template('login.html')
     else:
         msg = 'a senha e a confirmação de senha não são iguais'
         return render_template('paginacadastro.html', msg=msg)
@@ -44,17 +73,29 @@ def cadastrar():
 
 @app.route('/listar')
 def listar_usuarios():
-    return render_template('listar.html',usuarios=usuarios)
+    if 'login' in session:
+        udao = UsuarioDAO(g.session)
+        usuarios = udao.listar_usuarios()
+        return render_template('listar.html',usuarios=usuarios)
+    else:
+        return render_template('paginainicial.html')
 
 @app.route('/detalhes')
 def mostrar_detalhes():
-    email = request.values.get('email')
-    usuario = buscar_usuario(usuarios, email) #simulando um banco de dados
+    if 'login' in session:
+        print(session['login'])
+        udao = UsuarioDAO(g.session)
 
-    if usuario:
-        return render_template('detalhes.html', usuario=usuario)
-    msg = 'usuário nao encontrado'
-    return render_template('mensagemerro.html', msg=msg)
+        email = request.values.get('email')
+        usuario = udao.buscar_por_email(email)
+
+        if usuario:
+            return render_template('detalhes.html', usuario=usuario)
+        else:
+            msg = 'usuário nao encontrado'
+            return render_template('mensagemerro.html', msg=msg)
+    else:
+        return render_template('paginainicial.html')
 
 #end-point ou route (rota)
 @app.route('/dados')
@@ -67,10 +108,24 @@ def pegar_dados():
         print(nome_user)
     return 'deu cerrtooo'
 
+@app.route('/contato', methods=['GET'])
+def contatos():
+    return render_template('contato.html')
+
+@app.route('/voltar', methods=['GET'])
+def voltar():
+    return render_template('paginainicial.html')
+
+@app.route('/retorno', methods=['GET'])
+def retorno():
+    return render_template('pglogado.html')
 
 @app.route('/logout')
 def fazer_logout():
-    return render_template('index.html')
+    #limpo o objeto session (dicionário)
+    session.clear()
+    return render_template('paginainicial.html')
 
 #EXECUTANDO O SERVIDOR
-app.run()
+if __name__ == '__main__':
+    app.run(debug=True, port=5001)

@@ -1,10 +1,50 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>$Title$</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contato - Delícias da Dudah</title>
+  <link rel="stylesheet" href="../static/css/contato.css">
 </head>
 <body>
-$END$
+
+  <header>
+    <h1>Delícias da Dudah</h1>
+    <p>Fale com a gente! 💌</p>
+  </header>
+
+  <nav class="menu">
+    <div class="logo">🍰</div>
+    <ul class="menu-links">
+      <li><a href="/">Início</a></li>
+      <li><a href="/cadastrar">Cadastro</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <section class="contato">
+      <h2>Entre em contato</h2>
+      <form>
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" name="nome" required>
+
+        <label for="email">E-mail:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="telefone">Telefone:</label>
+        <input type="tel" id="telefone" name="telefone">
+
+        <label for="mensagem">Mensagem:</label>
+        <textarea id="mensagem" name="mensagem" rows="5" required></textarea>
+
+        <button type="submit">Enviar mensagem</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Delícias da Dudah — Todos os direitos reservados</p>
+  </footer>
+
 </body>
 </html>

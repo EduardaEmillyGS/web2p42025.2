@@ -1,10 +1,44 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>$Title$</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Login - Delícias da Dudah</title>
+  <link rel="stylesheet" href="../static/css/login.css">
 </head>
 <body>
-$END$
+
+  <header>
+    <h1>Delícias da Dudah</h1>
+    <p>Bem-vindo de volta! Faça seu login 🍰</p>
+  </header>
+
+  <main>
+    <section class="login">
+      <h2>Área do Cliente</h2>
+      <form action="/fazerlogin" method="post">
+        <label for="email">E-mail:</label>
+        <input type="email" name="loginusuario" id="email" placeholder="digite seu e-mail">
+
+        <label for="senha">Senha:</label>
+        <input type="password" name="senhausuario" id="senha"  placeholder="digite sua senha">
+
+        <button type="submit">Fazer login</button>
+
+        <p class="link">
+          <a href="/cadastrar" >Ainda não tem cadastro? Clique aqui</a>
+        </p>
+      </form>
+    </section>
+  </main>
+
+    <a href="/voltar" class="voltar">
+    ⬅ Voltar para o site principal
+    </a>
+
+  <footer>
+    <p>&copy; 2025 Delícias da Dudah — Todos os direitos reservados</p>
+  </footer>
+
 </body>
 </html>

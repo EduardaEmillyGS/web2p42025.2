@@ -1,0 +1,114 @@
+ body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      background-color: #fff8f0;
+      color: #5c3d2e;
+    }
+    header {
+      background-color: #f8c8dc;
+      padding: 20px;
+      text-align: center;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.5em;
+    }
+    nav {
+      background-color: #f2a6be;
+      padding: 10px;
+      text-align: center;
+    }
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .hero {
+      background-image: url('https://images.unsplash.com/photo-1600891964599-f61ba0e24092');
+      background-size: cover;
+      background-position: center;
+      height: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-shadow: 2px 2px 4px #000;
+    }
+    .hero h2 {
+      font-size: 2.5em;
+    }
+    .section {
+      padding: 40px;
+      text-align: center;
+    }
+    .section h3 {
+      font-size: 2em;
+      margin-bottom: 20px;
+    }
+    .galeria {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+    .item {
+      width: 200px;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+    .item img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+    }
+    .item p {
+      padding: 10px;
+      font-weight: bold;
+    }
+    table {
+      margin: 0 auto;
+      border-collapse: collapse;
+      width: 60%;
+    }
+    th, td {
+      border: 1px solid #d9a5b3;
+      padding: 10px;
+    }
+    th {
+      background-color: #f2a6be;
+      color: white;
+    }
+    form {
+      max-width: 400px;
+      margin: 0 auto;
+      text-align: left;
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border: 1px solid #d9a5b3;
+      border-radius: 5px;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #f2a6be;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    footer {
+      background-color: #f8c8dc;
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+    }

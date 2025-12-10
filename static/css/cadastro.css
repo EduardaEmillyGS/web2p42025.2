@@ -1,0 +1,91 @@
+body {
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  background-color: #fff8f0;
+  color: #5c3d2e;
+}
+
+header {
+  background-color: #f8c8dc;
+  padding: 20px;
+  text-align: center;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 2.5em;
+}
+
+main {
+  padding: 40px 20px;
+}
+
+.formulario {
+  max-width: 500px;
+  margin: 0 auto;
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.formulario h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #d96c8c;
+}
+
+label {
+  display: block;
+  margin-top: 15px;
+  font-weight: bold;
+}
+
+input, textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #d9a5b3;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+button {
+  margin-top: 20px;
+  padding: 12px;
+  background-color: #f2a6be;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  font-size: 1em;
+}
+
+button:hover {
+  background-color: #e68aa8;
+}
+
+footer {
+  background-color: #f8c8dc;
+  text-align: center;
+  padding: 20px;
+  margin-top: 40px;
+}
+
+
+.voltar {
+  display: inline-block;
+  margin: 20px;
+  padding: 10px 15px;
+  background-color: #f2a6be;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+.voltar:hover {
+  background-color: #e68aa8;
+}
