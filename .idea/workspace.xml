@@ -4,32 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7ce07be6-8973-486e-81fc-731e4efe7fc4" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/dao/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dao/banco.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dao/usuarioDAO.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/blueprints/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="7ce07be6-8973-486e-81fc-731e4efe7fc4" name="Changes" comment="git add">
+      <change afterPath="$PROJECT_DIR$/dao/produtoDAO.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/meubanco.db" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/produto/cadastrarproduto.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/produto/detalhespd.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/produto/listarproduto.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/usuarios.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blueprints/produtos_bd.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dao/banco.py" beforeDir="false" afterPath="$PROJECT_DIR$/dao/banco.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/modelos/modelos.py" beforeDir="false" afterPath="$PROJECT_DIR$/modelos/modelos.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/primeiro_exemplo.py" beforeDir="false" afterPath="$PROJECT_DIR$/blueprints/produtos_bd.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/servidor.py" beforeDir="false" afterPath="$PROJECT_DIR$/servidor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/cadastro.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/cadastro.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/contato.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/contato.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/login.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/login.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/menu.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/menu.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/paginainicial.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/paginainicial.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/script.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/contato.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/contato.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/detalhes.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/detalhes.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/listar.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/listar.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/logado.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/pglogado.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/menu.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/menu.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/paginacadastro.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/paginacadastro.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/paginainicial.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/paginainicial.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/retorno.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/retorno.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,8 +27,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="HTML File" />
         <option value="Python Script" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -48,7 +36,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="ProjectErrors" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 3
@@ -67,11 +55,12 @@
     &quot;Python.servidor.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/eduar/minhadoceria&quot;
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/eduar/minhadoceria/dao&quot;
   }
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\eduar\minhadoceria\dao" />
       <recent name="C:\Users\eduar\minhadoceria" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -169,18 +158,28 @@
       <option name="presentableId" value="Default" />
       <updated>1759258999859</updated>
     </task>
+    <task id="LOCAL-00001" summary="git add">
+      <option name="closed" value="true" />
+      <created>1765386597328</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1765386597328</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="first commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="" />
+    <MESSAGE value="git add" />
+    <option name="LAST_COMMIT_MESSAGE" value="git add" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/servidor.py</url>
-          <line>129</line>
+          <line>152</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>

@@ -1,6 +1,8 @@
 from flask import *
 from dao.banco import *
+from dao.produtoDAO import ProdutoDAO
 from dao.usuarioDAO import *
+from modelos.modelos import Produto
 
 #INSTANCIANDO O OBJETO DO SERVIDOR FLASK
 app = Flask(__name__)
@@ -14,6 +16,8 @@ def pegar_sessao():
 
 @app.teardown_appcontext
 def encerrar_sessao(exception=None):
+    if exception:
+        print(f"Erro durante a requisição: {exception}")
     Session.remove()
 
 @app.route('/')
@@ -97,13 +101,32 @@ def mostrar_detalhes():
     else:
         return render_template('paginainicial.html')
 
+@app.route('/cadastrarproduto', methods=['Get'])
+def produto():
+    if request.method == 'Get':
+        return render_template('cadastrarproduto.html')
+
+    uproduto = ProdutoDAO(g.session)
+    nomep = request.form.get('nomep')
+    id_produto = request.form.get('id_produto')
+    preco = request.form.get('preco')
+
+    if id_produto == int:
+        uproduto.criar(Produto(id_produto=id_produto, nomep=nomep, preco=preco))
+        return render_template('listarproduto.html')
+    else:
+        msg = 'produto invalido'
+        return render_template('cadastrarproduto.html', msg=msg)
+
+
+
 #end-point ou route (rota)
 @app.route('/dados')
 def pegar_dados():
-    id = request.values.get('id')
+    iid = request.values.get('id')
     nome_user = request.values.get('nome')
-    if id:
-        print(id)
+    if iid:
+        print(iid) #era id alterei para resolver o erro que estava apresentando
     if nome_user:
         print(nome_user)
     return 'deu cerrtooo'
