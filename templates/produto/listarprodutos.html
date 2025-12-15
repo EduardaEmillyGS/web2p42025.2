@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>Meus produtos cadastrados</h1>
+
+    {% for produto in produtos %}
+        <p>
+            Nome: <a href="/detalhespd?id={{produto.id_produto}}" target="_blank">{{produto.nomep}}</a><br>
+            Preço: R$ {{ "%.2f"|format(produto.preco)}}<br>
+            Descrição: {{produto.descricao}}
+        </p>
+        <hr>
+    {% endfor %}
+
+</body>
+</html>

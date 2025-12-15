@@ -1,8 +1,6 @@
-from sqlalchemy import Column, String
-#Integer, Boolean, DateTime
+from sqlalchemy import Column, Integer, String, Float
 from sqlalchemy.ext.declarative import declarative_base
 
-#é um modelo que vai  representar uma tabela no BD
 Base = declarative_base()
 
 class Usuario(Base):
@@ -19,13 +17,13 @@ class Usuario(Base):
 class Produto(Base):
     __tablename__ = 'produtos'
 
-    id_produto = Column(String, primary_key=True)
-    nomep = Column(String)
-    preco = Column(String)
+    id_produto = Column(Integer, primary_key=True, autoincrement=True)
+    nomep = Column(String, nullable=False)
+    preco = Column(Float, nullable=False)
+    descricao = Column(String)
 
     def __repr__(self):
-        return f"<Produto(preco='{self.nomep}', nome='{self.preco}')>"
-
+        return f"<Produto(id_produto={self.id_produto}, nomep='{self.nomep}', preco={self.preco}, descricao={self.descricao})>"
 
 #fazer outro model classe passagem no modelo
 #alterar usua+rios para passagen  novo usuario dao altera todos os usuarios para passagem funções de acorso com o modelo id, nome, preço

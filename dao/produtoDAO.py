@@ -13,14 +13,26 @@ class ProdutoDAO:
         #autorizando modificações no banco/ gravando a alteração
         self.session.commit()
 
-    def buscar_por_id(self, id_produto):
+    def buscar_por_id(self, id_produto: int):
         return self.session.query(Produto).filter_by(id_produto=id_produto).first()
 
     def listar_produtos(self):
         return self.session.query(Produto).all()
 
-    def autenticar(self, id_produto, preco):
-        pd = self.buscar_por_id(id_produto)
-        if pd and pd.preco == preco:
-            return pd
+    def atualizar_preco(self, id_produto: int, novo_preco: float):
+        # atualiza o preço de um produto específico
+        produto = self.buscar_por_id(id_produto)
+        if produto:
+            produto.preco = novo_preco
+            self.session.commit()
+            return produto
         return None
+
+    def deletar(self, id_produto: int):
+        # remove um produto do banco
+        produto = self.buscar_por_id(id_produto)
+        if produto:
+            self.session.delete(produto)
+            self.session.commit()
+            return True
+        return False

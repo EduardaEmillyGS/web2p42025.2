@@ -4,10 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Cadastro do Produto - Delícias da Dudah</title>
-  <link rel="stylesheet" href="../static/css/">
+  <link rel="stylesheet" href="css">
 </head>
 <body>
-<!--corrigir erros; requisiçoes erronias-->
+
   <header>
     <h1>Delícias da Dudah</h1>
     <p>Cadastrar produto:🍬</p>
@@ -17,26 +17,28 @@
     <section class="produto">
       <h2>Cadastro do produto</h2>
 
-      <form action="/cadastrarproduto" method="Get"> <!--criar rota no servidor-->
-        <label>Nome:</label>
-         <input type="text" name="nomep" placeholder="digite o nome"><br>
+      <form action="/cadastrarproduto" method="post"> <!--criar rota no servidor-->
+        <label for="nomep">Nome:</label>
+         <input type="text" id="nomep" name="nomep" placeholder="digite o nome" required><br>
 
-        <label>Id:</label> <!--criar rota no servidor; id_produto para chamar o id serve p/ chamar o elemnto dentro da pagina-->
-        <input type="text" name="id_produto" placeholder="digite o codigo do produto"><br>
+        <label for="preco">preço:</label>
+        <input type="number" id="preco" name="preco" placeholder="digite o valor" step="0.01" required><br>
 
-        <label>preço:</label>
-        <input type="number" name="preco" placeholder="digite o valor"><br>
+        <label for="descricao">Descrição:</label>
+        <input type="text" id="descricao" name="descricao" placeholder="Digite a descrição"><br>
 
-        <label>Descrição:</label>
-        <input type="text" name="descricao">
-
-        <button type="submit" onclick="()" href="../templates/paginainicial.html">Cadastrar</button> <!--Ajustar-->
+        <button type="submit">Cadastrar</button>
       </form>
+
+            <!-- Exibir mensagem de erro se existir -->
+      {% if msg %}
+        <p style="color:red;">{{ msg }}</p>
+      {% endif %}
+
     </section>
   </main>
 
-
-  <script src="../static/.js"></script>
+  <script src=""></script>
 
   <a href="/voltar" class="voltar">
   ⬅ Voltar para o site principal

@@ -62,6 +62,7 @@ def cadastrar():
         return render_template('paginacadastro.html')
 
     udao = UsuarioDAO(g.session)
+
     nome = request.form.get('nomeuser')
     email = request.form.get('email')
     senha = request.form.get('senha')
@@ -101,35 +102,46 @@ def mostrar_detalhes():
     else:
         return render_template('paginainicial.html')
 
-@app.route('/cadastrarproduto', methods=['Get'])
-def produto():
-    if request.method == 'Get':
-        return render_template('cadastrarproduto.html')
+@app.route('/cadastrarproduto', methods=['GET', 'POST'])
+def cadastrar_produto():
+    if request.method == 'GET':
+        return render_template('produto/cadastrarproduto.html')
 
-    uproduto = ProdutoDAO(g.session)
+    produto_dao = ProdutoDAO(g.session)
     nomep = request.form.get('nomep')
-    id_produto = request.form.get('id_produto')
     preco = request.form.get('preco')
+    descricao = request.form.get('descricao')
 
-    if id_produto == int:
-        uproduto.criar(Produto(id_produto=id_produto, nomep=nomep, preco=preco))
-        return render_template('listarproduto.html')
+    novo_produto = Produto(nomep=nomep, preco=preco, descricao=descricao)
+    produto_dao.criar(novo_produto)
+
+    return redirect(url_for('listar_produtos'))
+
+@app.route('/listarprodutos')
+def listar_produtos():
+    if 'login' in session:
+        produto_dao = ProdutoDAO(g.session)
+        produtos = produto_dao.listar_produtos()
+        return render_template('produto/listarprodutos.html', produtos=produtos)
     else:
-        msg = 'produto invalido'
-        return render_template('cadastrarproduto.html', msg=msg)
+        return render_template('login.html')
 
 
+@app.route('/detalhesproduto')
+def detalhes_produto():
+    if 'login' in session:
+        id_produto = int(request.values.get('id'))
+        produto_dao = ProdutoDAO(g.session)
+        produto = produto_dao.buscar_por_id(id_produto)
 
-#end-point ou route (rota)
-@app.route('/dados')
-def pegar_dados():
-    iid = request.values.get('id')
-    nome_user = request.values.get('nome')
-    if iid:
-        print(iid) #era id alterei para resolver o erro que estava apresentando
-    if nome_user:
-        print(nome_user)
-    return 'deu cerrtooo'
+        if produto:
+         return render_template('produto/detalhespd.html', produto=produto)
+        else:
+            msg = 'Produto nao encontrado'
+            return render_template('mensagemerro.html', msg=msg)
+    else:
+        return render_template('paginainicial.html')
+
 
 @app.route('/contato', methods=['GET'])
 def contatos():

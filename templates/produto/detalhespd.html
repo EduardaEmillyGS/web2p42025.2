@@ -1,17 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+  <meta charset="UTF-8">
+  <title>Detalhes do Produto</title>
 </head>
-
-    <h1>Detalhes do produto</h1>
-
 <body>
+  <header>
+    <h1>Delícias da Dudah</h1>
+    <p>Detalhes do produto 🍬</p>
+  </header>
 
-    <p>Nome: {{produto.nomep}}</p>
-    <p>preço: {{produto.preco}}</p>
-    <a href="/retorno">Voltar</a>
+  <main>
+    <section class="detalhespd">
+      <h2>{{ produto.nomep }}</h2>
+      <p><strong>Nome:</strong> {{ produto.nomep }}</p>
+      <p><strong>ID:</strong> {{ produto.id_produto }}</p>
+      <p><strong>Preço:</strong> R$ {{ produto.preco }}</p>
+      <p><strong>Descrição:</strong> {{ produto.descricao }}</p>
+    </section>
+  </main>
 
+  <a href="/listarprodutos">⬅ Voltar para lista de produtos</a>
+
+  <footer>
+    <p>&copy; 2025 Delícias da Dudah — Todos os direitos reservados</p>
+  </footer>
 </body>
 </html>
