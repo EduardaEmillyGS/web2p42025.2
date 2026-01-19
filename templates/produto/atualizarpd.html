@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Atualizar preço - Delícias da Dudah</title>
+</head>
+<body>
+  <header>
+    <h1>Delícias da Dudah</h1>
+    <p>Atualizar preço 🍬</p>
+  </header>
+
+  <main>
+    <section>
+
+        <p><strong>Produto:</strong> {{ produto.nomep }}</p>
+        <p><strong>Preço atual:</strong> R$ {{ "%.2f"|format(produto.preco) }}</p>
+
+        <form action="{{ url_for('atualizar_preco', id_produto=produto.id_produto) }}" method="post">
+          <label for="novo_preco">Novo preço:</label>
+          <input type="number" id="novo_preco" name="novo_preco" step="0.01" required>
+          <button type="submit">Atualizar</button>
+        </form>
+
+        {% if msg %}
+          <p style="color:red;">{{ msg }}</p>
+        {% endif %}
+
+        <a href="{{ url_for('listar_meus_produtos') }}">⬅ Voltar para lista de produtos</a>
+
+    </section>
+  </main>
+</body>
+</html>

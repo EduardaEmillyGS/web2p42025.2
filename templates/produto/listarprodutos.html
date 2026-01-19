@@ -7,14 +7,26 @@
 <body>
     <h1>Meus produtos cadastrados</h1>
 
+    <h2>{{msg}}</h2>
+
     {% for produto in produtos %}
-        <p>
+    <p>
             Nome: <a href="/detalhespd?id={{produto.id_produto}}" target="_blank">{{produto.nomep}}</a><br>
             Preço: R$ {{ "%.2f"|format(produto.preco)}}<br>
             Descrição: {{produto.descricao}}
-        </p>
+
+            <form action="/atualizar_preco" method="POST" >
+                <input type="hidden" name="preco" value="{{preco}}">
+
+                <button type="submit" class="btn-Atualizar">Atualizar</button>
+            </form>
+
+            <form action="/deletar_produto" method="POST" >
+                <input type="hidden" name="nomep" value="{{id_produto}}">
+                <button type="submit" class="btn-excluir">Excluir</button>
+            </form>
+    </p>
         <hr>
     {% endfor %}
-
 </body>
 </html>

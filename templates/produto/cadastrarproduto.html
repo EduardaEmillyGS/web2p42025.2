@@ -13,11 +13,15 @@
     <p>Cadastrar produto:🍬</p>
   </header>
 
+  <a href="/voltar" class="voltar">
+  ⬅ Voltar para o site principal
+  </a>
+
   <main>
     <section class="produto">
       <h2>Cadastro do produto</h2>
 
-      <form action="/cadastrarproduto" method="post"> <!--criar rota no servidor-->
+      <form action="/cadastrarproduto" method="post">
         <label for="nomep">Nome:</label>
          <input type="text" id="nomep" name="nomep" placeholder="digite o nome" required><br>
 
@@ -30,19 +34,10 @@
         <button type="submit">Cadastrar</button>
       </form>
 
-            <!-- Exibir mensagem de erro se existir -->
-      {% if msg %}
-        <p style="color:red;">{{ msg }}</p>
-      {% endif %}
-
     </section>
   </main>
 
   <script src=""></script>
-
-  <a href="/voltar" class="voltar">
-  ⬅ Voltar para o site principal
-  </a>
 
   <footer>
     <p>&copy; 2025 Delícias da Dudah — Todos os direitos reservados</p>

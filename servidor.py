@@ -4,7 +4,7 @@ from dao.produtoDAO import ProdutoDAO
 from dao.usuarioDAO import *
 from modelos.modelos import Produto
 
-#INSTANCIANDO O OBJETO DO SERVIDOR FLASK
+
 app = Flask(__name__)
 app.secret_key = 'HGF431kSD&'
 
@@ -12,7 +12,7 @@ init_db()
 
 @app.before_request
 def pegar_sessao():
-    g.session = Session()#ao criar a aplicaçao ele instancia um objeto de sessao para acesso controlado ao BD
+    g.session = Session()
 
 @app.teardown_appcontext
 def encerrar_sessao(exception=None):
@@ -53,7 +53,7 @@ def fazer_login():
     else:
         #aqui o usuario digitou o login ou senha errado
         msg = 'Usuário ou senha inválidos'
-        return render_template('paginainicial.html', texto=msg)
+        return render_template('login.html', msg=msg)
 
 
 @app.route('/cadastrar', methods=['GET','POST'])
@@ -106,7 +106,6 @@ def mostrar_detalhes():
 def cadastrar_produto():
     if request.method == 'GET':
         return render_template('produto/cadastrarproduto.html')
-
     produto_dao = ProdutoDAO(g.session)
     nomep = request.form.get('nomep')
     preco = request.form.get('preco')
@@ -142,6 +141,51 @@ def detalhes_produto():
     else:
         return render_template('paginainicial.html')
 
+@app.route('/excluir', methods=['GET','POST'])
+def excluir_user():
+    email = request.form.get('email')
+    usuario_dao = UsuarioDAO(g.session)
+    teste = usuario_dao.deletar(email)
+
+    if teste:
+        msg = "Usuário excluido!"
+        return redirect(url_for('listar_usuarios',  msg=msg))
+    else:
+        msg = "Erro ao excluir!"
+        return redirect(url_for('listar_usuarios', msg=msg))
+
+
+@app.route('/deletarproduto', methods=['GET', 'POST']) #ajeitar
+def deletar_produto():
+        namep = request.form.get('namep')
+        produto_dao = ProdutoDAO(g.session)
+        sucesso = produto_dao.deletar(namep)
+
+        if sucesso:
+            msg = "Produto excluído com sucesso!"
+            return redirect(url_for('listarprodutos', msg=msg))
+        else:
+            msg = "Produto não encontrado ou erro ao excluir."
+        return redirect(url_for('listar_produtos', msg=msg))
+
+
+@app.route('/atualizarpreco', methods=['GET', 'POST'])
+def atualizar_preco(id_produto):
+    if 'login' in session:
+        produto_dao = ProdutoDAO(g.session)
+        novo_preco = request.form.get('novo_preco')
+        try:
+            novo_preco = float(novo_preco)
+            produto_dao.atualizar_preco(id_produto, novo_preco)
+            msg = "Preço atualizado com sucesso!"
+            return redirect(url_for('listar_meus_produtos',  msg=msg))
+        except ValueError:
+            msg = "Preço inválido. Digite um número válido."
+            return render_template('atualizar_preco.html', produto=produto_dao.buscar_por_id(id_produto), msg=msg)
+    else:
+        msg = "Você precisa estar logado para atualizar o preço."
+        return redirect(url_for('login', msg=msg))
+
 
 @app.route('/contato', methods=['GET'])
 def contatos():
@@ -151,7 +195,7 @@ def contatos():
 def voltar():
     return render_template('paginainicial.html')
 
-@app.route('/retorno', methods=['GET'])
+@app.route('/retorno', methods=['GET'])#ajeitar
 def retorno():
     return render_template('pglogado.html')
 
@@ -161,6 +205,5 @@ def fazer_logout():
     session.clear()
     return render_template('paginainicial.html')
 
-#EXECUTANDO O SERVIDOR
 if __name__ == '__main__':
     app.run(debug=True, port=5001)

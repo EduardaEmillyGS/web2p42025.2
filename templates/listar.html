@@ -7,10 +7,17 @@
 <body>
     <h1>Meus usuários cadastrados</h1>
 
+    <h2>{{msg}}</h2>
+
     {% for user in usuarios %}
         <p>
             Nome: <a href="/detalhes?email={{user.email}}" target="_blank">{{user.nome}}</a>
 
+        <form action="/excluir" method="POST" >
+            <input type="hidden" name="email" value="{{user.email}}">
+
+            <button type="submit" class="btn-excluir">Excluir</button>
+        </form>
         </p>
         <hr>
     {% endfor %}

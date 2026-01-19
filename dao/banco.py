@@ -8,11 +8,3 @@ Session = scoped_session(sessionmaker(bind=engine))
 
 def init_db():
     Base.metadata.create_all(engine)
-
-
-
-
-#Configura a conexão com um banco SQLite chamado usuarios.db.
-#Cria uma fábrica de sessões para interagir com o banco.
-#Define uma função init_db() que cria as tabelas baseadas nos modelos definidos.
-##criar um para produtos;  verificar rotas esta bagunçado!

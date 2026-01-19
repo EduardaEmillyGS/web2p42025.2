@@ -24,8 +24,3 @@ class Produto(Base):
 
     def __repr__(self):
         return f"<Produto(id_produto={self.id_produto}, nomep='{self.nomep}', preco={self.preco}, descricao={self.descricao})>"
-
-#fazer outro model classe passagem no modelo
-#alterar usua+rios para passagen  novo usuario dao altera todos os usuarios para passagem funções de acorso com o modelo id, nome, preço
-# + aplicação nos servidor exemplo:  udao = UsuarioDAO(g.session)  + htmml de listar e cadastrar produto/passagem criar uma rota para ligação
-#importar passagem/produto no servidor "from DAO.passagemDAO import * "
